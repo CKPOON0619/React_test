@@ -44,7 +44,7 @@ export default class Application extends Component {
         </Layout.Header>
         <Layout.Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            {buildBreadcrumb(['Home'])}
+            {buildBreadcrumb(['Home',this.state.page])}
           </Breadcrumb>
           <div
             style={{
