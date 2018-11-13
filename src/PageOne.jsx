@@ -8,33 +8,56 @@ import { Input, Table } from 'antd';
 
 // Gets an object which has the count of letters
 const getLetterCount = text => {
-  return text;
+  let allChar=text.replace(/[^a-zA-Z]+/g, "").split('');
+  let dict=allChar.reduce((dict,ele)=>{dict[ele]=dict[ele]?(dict[ele]+1):1;return dict},{});
+  return dict;
 };
 
 // Define columns
 const getColumns = (text, increment) => {
+  let lttrCnt=getLetterCount(text)
+  let mxCnt=Math.max.apply(null, Object.keys(lttrCnt).map(x => lttrCnt[x]))
+  let len=mxCnt%increment>0?(Math.floor(mxCnt/increment)+1):Math.floor(mxCnt/increment)
+  let buckets=Array.apply(null,Array(len)).map((_,i)=>{
+    let lowerBound=i*increment;
+    let upperBound=(i+1)*increment;
+    return {
+      title: `${[lowerBound]} - ${[upperBound]}`,
+      dataIndex: `${[lowerBound]} - ${[upperBound]}`
+    }
+  })
   return [
     {
       title: 'Letter',
-      dataIndex: 'name',
-      render: text => <b>{text}</b>
-    }
-  ];
+      dataIndex: 'name'
+    }].concat(buckets);
 };
 
 // Build entry
 const getLetterRow = (letter, count, template) => {
-  return {};
+  let update=Object.assign({},template)
+  let increment=Object.keys(template)[1].split(' - ')[1]
+  let bucketNum=Math.floor(count/increment)
+  update.name=letter
+  update[(bucketNum*increment)+' - '+((bucketNum+1)*increment)]='X'
+  return update
 };
 
 // Get row template
 const getRowTemplate = (text, increment) => {
-  return {};
+  let cols=getColumns(text,increment)
+  return cols.slice(1).reduce((template,bucketCol)=>{template[bucketCol.dataIndex]='-';return template},{'name':undefined});
 };
 
 // Define data source
 const getDataSource = (text, increment) => {
-  return [];
+  let letters=getLetterCount(text)
+  let template=getRowTemplate(text,increment)
+  let data=[]
+  for(let k in letters){
+    data.push(getLetterRow(k,letters[k],template))
+  }
+  return data;
 };
 
 // Build text box
