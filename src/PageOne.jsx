@@ -4,7 +4,7 @@
 import React from 'react';
 
 // Load antDesign modules
-import { Input, Table } from 'antd';
+import { Input,Table } from 'antd';
 
 // Gets an object which has the count of letters
 const getLetterCount = text => {
@@ -39,6 +39,7 @@ const getLetterRow = (letter, count, template) => {
   let increment=Object.keys(template)[1].split(' - ')[1]
   let bucketNum=Math.floor(count/increment)
   update.name=letter
+  update.key=letter
   update[(bucketNum*increment)+' - '+((bucketNum+1)*increment)]='X'
   return update
 };

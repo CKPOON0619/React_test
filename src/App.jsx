@@ -19,9 +19,12 @@ export default class Application extends Component {
   constructor(props) {
     super(props) && autoBind(this);
     this.state = {
-      page: 'page1',
+      page: 'page2',
       increment: 10,
-      text: exampleText
+      text: exampleText,
+      starWarsPage:1,
+      starWarsCache:{},
+      starWarsCharCache:{}
     };
   }
   // Update state
