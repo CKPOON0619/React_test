@@ -22,9 +22,10 @@ export default class Application extends Component {
       page: 'page2',
       increment: 10,
       text: exampleText,
-      starWarsPage:1,
+      starWarsPage:'https://swapi.co/api/people/?page=1',
       starWarsCache:{},
-      starWarsCharCache:{}
+      starWarsCharCache:{},
+      starWarsLinkCache:{}
     };
   }
   // Update state
