@@ -18,8 +18,8 @@ class LinkCard extends React.Component {
     }
 
     handleVisibleChange(visible){
-        this.setState({ visible });
         this.props.onClick();
+        this.setState({ visible });   
     }
 
     render() {
@@ -32,7 +32,7 @@ class LinkCard extends React.Component {
                 visible={this.state.visible}
                 onVisibleChange={this.handleVisibleChange}
             >
-            <Button type="dashed">{this.props.label}</Button>
+            <Button type="default">{this.props.label}</Button>
             </Popover>
         );
     }
