@@ -30,6 +30,8 @@ export const cardAttrs={
 
 export const linkAttrs={
     people:[
+      {label:'Gender',key:'gender'},
+      {label:'Birth year',key:'birth_year'},
       {label:'Height',key:'height'},
       {label:'Mass',key:'mass'},
       {label:'Hair color',key:'hair_color'},
