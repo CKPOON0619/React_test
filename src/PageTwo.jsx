@@ -3,7 +3,7 @@
 // Load NPM modules
 import React from 'react';
 import axios from 'axios';
-import {Pagination,Icon,Card,Col,Row,Spin,Popover,Button,Menu,Dropdown} from 'antd';
+import {Pagination,Card,Col,Row,Spin} from 'antd';
 import {linkAttrs, linkTitle, cardAttrs} from './common/AttrDisplay.js'
 import LinkCard from './common/LinkCard'
 import CardMenu from './common/CardMenu'
